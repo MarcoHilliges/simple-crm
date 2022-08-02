@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { addDoc, collection, collectionData, Firestore, onSnapshot } from '@angular/fire/firestore';
+import { MatDialogRef } from '@angular/material/dialog';
 import { doc, setDoc } from '@firebase/firestore';
 import { Observable } from 'rxjs';
 import { User } from 'src/models/user.class';
@@ -15,10 +16,11 @@ export class DialogAddUserComponent implements OnInit {
   birthDate!: Date;
 
   users$!: Observable<any>;
+  loading:boolean = false;
 
-  constructor(private firestore: Firestore) { 
-    const coll = collection(this.firestore, 'Users')
-    this.users$ = collectionData(coll)
+  constructor(private firestore: Firestore, public dialogRef: MatDialogRef<DialogAddUserComponent>) { 
+    const coll = collection(this.firestore, 'Users');
+    this.users$ = collectionData(coll);
     console.log(this.users$);
 
     this.users$.subscribe((user) => {
@@ -33,10 +35,15 @@ export class DialogAddUserComponent implements OnInit {
   }
 
   async saveUser(){
+    this.loading = true;
     this.user.birthDate = this.birthDate.getTime();
     console.log('Current User ist', this.user.toJSON());
 
     const docRef = await addDoc(collection(this.firestore, "Users"), this.user.toJSON())
     console.log('ID', docRef.id)
+    this.user.id = docRef.id;
+    await setDoc(doc(this.firestore, "Users", this.user.id), this.user.toJSON());
+    this.loading = false;
+    this.dialogRef.close();
   }
 }

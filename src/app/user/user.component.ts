@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { collectionData, Firestore } from '@angular/fire/firestore';
 import { MatDialog } from '@angular/material/dialog';
+import { collection } from '@firebase/firestore';
+import { Observable } from 'rxjs';
 import { User } from 'src/models/user.class';
 import { DialogAddUserComponent } from '../dialog-add-user/dialog-add-user.component';
 
@@ -11,12 +14,21 @@ import { DialogAddUserComponent } from '../dialog-add-user/dialog-add-user.compo
 export class UserComponent implements OnInit {
 
   user = new User();
+  allUser:any = [];
+  users$!:Observable<any>;
 
-  constructor(public dialog: MatDialog) { 
+  constructor(public dialog: MatDialog, private firestore: Firestore) { 
     
   }
 
   ngOnInit(): void {
+    const coll = collection(this.firestore, 'Users');
+    this.users$ = collectionData(coll);
+    this.users$.subscribe((usersFromServer:any)=>{
+      console.log(usersFromServer);
+      this.allUser = usersFromServer;
+
+    })
   }
 
   openDialog(){
