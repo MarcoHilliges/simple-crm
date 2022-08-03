@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { doc, onSnapshot } from '@firebase/firestore';
 import { User } from 'src/models/user.class';
+import { DialogDeleteUserComponent } from '../dialog-delete-user/dialog-delete-user.component';
 import { DialogEditAddressComponent } from '../dialog-edit-address/dialog-edit-address.component';
 import { DialogEditUserComponent } from '../dialog-edit-user/dialog-edit-user.component';
 
@@ -40,6 +41,11 @@ export class UserDetailComponent implements OnInit {
 
   editUserDetail(){
     const dialog = this.dialog.open(DialogEditUserComponent);
+    dialog.componentInstance.user = new User(this.activeUser.toJSON());
+  }
+
+  deleteUser(){
+    const dialog = this.dialog.open(DialogDeleteUserComponent);
     dialog.componentInstance.user = new User(this.activeUser.toJSON());
   }
 }
