@@ -1,0 +1,28 @@
+.radio-groups{
+    display: flex;
+
+    div{
+        width: 50%;
+
+        .m-0{
+            margin: 0;
+        }
+    }
+}
+
+.example-radio-group {
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0;
+    align-items: flex-start;
+  }
+  
+  .example-radio-button {
+    margin: 5px;
+  }
+
+  img{
+    height: 50px;
+    width: 50px;
+    object-fit: cover;
+  }

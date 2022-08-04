@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { user } from '@angular/fire/auth';
 import { Firestore } from '@angular/fire/firestore';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
@@ -17,6 +18,7 @@ export class UserDetailComponent implements OnInit {
 
   userId:any = '';
   activeUser: User = new User();
+  jobRoleColor = 'rgb(155, 106, 43)';
 
   constructor(private route: ActivatedRoute, 
               private firestore: Firestore, 
@@ -31,6 +33,11 @@ export class UserDetailComponent implements OnInit {
     onSnapshot(doc(this.firestore, 'Users', this.userId), (doc) => {
       this.activeUser = new User(doc.data());
       // console.log("Current data: ", this.activeUser);
+      if (this.activeUser.jobRole == 'Sales Manager') this.jobRoleColor = 'rgb(147, 148, 229)';
+      if (this.activeUser.jobRole == 'Quali Call') this.jobRoleColor = 'rgb(215, 147, 229)';
+      if (this.activeUser.jobRole == 'Coach') this.jobRoleColor = 'rgb(129, 187, 117)';
+      if (this.activeUser.jobRole == 'Technician') this.jobRoleColor = 'rgb(134, 134, 134)';
+      // console.log(this.activeUser.jobRole);
     })
   }
 

@@ -6,26 +6,57 @@
         <div>
             <mat-form-field class="mr-16" appearance="outline">
                 <mat-label>First-Name</mat-label>
-                <input [disabled]="loading" [(ngModel)]="user.firstName" matInput placeholder="First-Name">
+                <input [disabled]="loading" [(ngModel)]="user.firstName" matInput placeholder="First-Name" [formControl]="firstName" required>
             </mat-form-field>
 
             <mat-form-field appearance="outline">
                 <mat-label>Last-Name</mat-label>
-                <input [disabled]="loading" [(ngModel)]="user.lastName" matInput placeholder="Last-Name">
+                <input [disabled]="loading" [(ngModel)]="user.lastName" matInput placeholder="Last-Name" [formControl]="lastName" required>
             </mat-form-field>
+        </div>
+
+        <div class="radio-groups">
+            <div>
+                <label id="example-radio-group-label">Job-Role</label>
+                <mat-radio-group [disabled]="loading"
+                                aria-labelledby="example-radio-group-label"
+                                class="example-radio-group"
+                                [(ngModel)]="user.jobRole">
+                    <mat-radio-button class="example-radio-button" 
+                                    *ngFor="let jobRole of jobRoles" 
+                                    [value]="jobRole">
+                        {{jobRole}}
+                    </mat-radio-button>
+                </mat-radio-group>
+            </div>
+
+            <div>
+                <label id="example-radio-group-label">Avatar</label>
+                <mat-radio-group [disabled]="loading"
+                                aria-labelledby="example-radio-group-label"
+                                class="example-radio-group m-0"
+                                [(ngModel)]="user.avatar">
+                    <mat-radio-button class="example-radio-button" 
+                                    *ngFor="let avatar of avatarImg" 
+                                    [value]="avatar">
+                        <img src="./assets/img/{{avatar}}.png" alt=""> 
+                    </mat-radio-button>
+                </mat-radio-group>
+            </div>
         </div>
 
         <div>
             <mat-form-field class="full-width" appearance="outline">
                 <mat-label>E-Mail-Address</mat-label>
-                <input [disabled]="loading" [(ngModel)]="user.email" matInput placeholder="E-Mail-Address">
+                <input [disabled]="loading" [(ngModel)]="user.email" [formControl]="email" required matInput placeholder="E-Mail-Address">
+                <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
             </mat-form-field>
         </div>
 
         <div>
             <mat-form-field class="full-width" appearance="outline">
                 <mat-label>Birth Date</mat-label>
-                <input [disabled]="loading" [(ngModel)]="birthDate" matInput placeholder="Birth-Date" [matDatepicker]="picker2">
+                <input [disabled]="loading" [(ngModel)]="birthDate" matInput placeholder="Birth-Date" [matDatepicker]="picker2" [formControl]="datepicker">
                 <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
                 <mat-datepicker #picker2 color="primary"></mat-datepicker>
                 <mat-hint>MM/DD/YYYY</mat-hint>
@@ -53,6 +84,8 @@
     </div>
     <div mat-dialog-actions>
         <button [disabled]="loading" mat-button (click)="dialogRef.close()" >Cancel</button>
-        <button [disabled]="loading" mat-button (click)="saveUser()" cdkFocusInitial>Save</button>
+        <button [disabled]="loading || !firstName.valid || !lastName.valid || !email.valid || !datepicker.valid" 
+                mat-button (click)="saveUser()" 
+                cdkFocusInitial>Save</button>
     </div>
 </div>

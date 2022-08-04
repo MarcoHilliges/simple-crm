@@ -19,7 +19,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { UserComponent } from './user/user.component';
 import { DialogAddUserComponent } from './dialog-add-user/dialog-add-user.component';
 import { MatNativeDateModule } from '@angular/material/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideAuth,getAuth } from '@angular/fire/auth';
@@ -32,6 +32,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { DialogEditAddressComponent } from './dialog-edit-address/dialog-edit-address.component';
 import { DialogEditUserComponent } from './dialog-edit-user/dialog-edit-user.component';
 import { DialogDeleteUserComponent } from './dialog-delete-user/dialog-delete-user.component';
+import { MatRadioModule } from '@angular/material/radio';
 
 
 
@@ -62,9 +63,11 @@ import { DialogDeleteUserComponent } from './dialog-delete-user/dialog-delete-us
     MatDatepickerModule,
     MatNativeDateModule,
     FormsModule,
+    ReactiveFormsModule,
     MatProgressBarModule,
     MatCardModule,
     MatMenuModule,
+    MatRadioModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideDatabase(() => getDatabase()),

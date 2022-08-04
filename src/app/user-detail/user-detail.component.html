@@ -1,5 +1,6 @@
-<mat-card class="user-detail-header">
-    <button mat-icon-button class="pin-right-upper-corner" [matMenuTriggerFor]="headerMenu">
+<mat-card class="user-detail-header" [ngStyle]="{'background-color': jobRoleColor}">
+    <button mat-icon-button class="pin-right-upper-corner" 
+            [matMenuTriggerFor]="headerMenu">
         <mat-icon>more_vert</mat-icon>
     </button>
 
@@ -8,15 +9,17 @@
         <button mat-menu-item (click)="deleteUser()">Delete User</button>
     </mat-menu>
 
-    <img src="./assets/img/avatar1.png" alt="">
+    <span class="job-role"> {{activeUser.jobRole}} </span>
 
     <div class="user-details">
         <h2> {{activeUser.firstName}} {{activeUser.lastName}} </h2>
         <span> {{activeUser.email}} </span> 
     </div>
+
+    <img src="./assets/img/{{activeUser.avatar}}.png" alt="">
 </mat-card>
 
-<mat-card class="mt-32">
+<mat-card class="user-details-content">
     <button mat-icon-button class="pin-right-upper-corner" [matMenuTriggerFor]="addressMenu">
         <mat-icon>more_vert</mat-icon>
     </button>
