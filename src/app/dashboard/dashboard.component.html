@@ -1,1 +1,15 @@
-City's
+<dx-pie-chart
+  id="pie"
+  title="jobs overview"
+  palette="bright"
+  [dataSource]="jobRoles"
+
+>
+  <dxi-series argumentField="jobRole" valueField="amount">
+    <dxo-label [visible]="true">
+      <dxo-connector [visible]="true" [width]="1"></dxo-connector>
+    </dxo-label>
+  </dxi-series>
+  <dxo-size [width]="500"></dxo-size>
+  <dxo-export [enabled]="true"></dxo-export>
+</dx-pie-chart>

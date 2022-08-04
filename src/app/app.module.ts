@@ -34,6 +34,10 @@ import { DialogEditUserComponent } from './dialog-edit-user/dialog-edit-user.com
 import { DialogDeleteUserComponent } from './dialog-delete-user/dialog-delete-user.component';
 import { MatRadioModule } from '@angular/material/radio';
 
+import { DxButtonModule, DxChartModule, DxListModule, DxPieChartModule } from 'devextreme-angular';
+
+
+
 
 
 
@@ -71,7 +75,12 @@ import { MatRadioModule } from '@angular/material/radio';
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideDatabase(() => getDatabase()),
-    provideFirestore(() => getFirestore())
+    provideFirestore(() => getFirestore()),
+    DxButtonModule,
+    DxListModule,
+    DxChartModule,
+    DxPieChartModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]
