@@ -5,6 +5,7 @@
     justify-content: center;
     align-items: center;
     min-height: 150px;
+    min-width: 270px;
     // background-color: rgb(134, 134, 134);
     color: white;
 
@@ -53,10 +54,25 @@
 .user-details-content{
     margin-top: -30px;
     padding-top: 50px;
+    min-width: 270px;
 
     .pin-right-upper-corner{
         position: absolute;
         right: 0;
         top: 30px;
+    }
+}
+
+@media screen and (max-width: 350px){
+    .user-detail-header{
+       
+        img{
+            width: 75px;
+            height: 75px;
+        }
+    }
+
+    .user-details-content{
+        min-width: 270px;
     }
 }

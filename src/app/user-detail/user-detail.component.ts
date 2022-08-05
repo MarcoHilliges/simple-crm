@@ -27,17 +27,15 @@ export class UserDetailComponent implements OnInit {
   ngOnInit(): void {
     this.route.paramMap.subscribe(paramMap => {
       this.userId = paramMap.get('id');
-      // console.log(this.userId);
     })
 
     onSnapshot(doc(this.firestore, 'Users', this.userId), (doc) => {
       this.activeUser = new User(doc.data());
-      // console.log("Current data: ", this.activeUser);
+
       if (this.activeUser.jobRole == 'Sales Manager') this.jobRoleColor = 'rgb(147, 148, 229)';
       if (this.activeUser.jobRole == 'Quali Call') this.jobRoleColor = 'rgb(215, 147, 229)';
       if (this.activeUser.jobRole == 'Coach') this.jobRoleColor = 'rgb(129, 187, 117)';
       if (this.activeUser.jobRole == 'Technician') this.jobRoleColor = 'rgb(134, 134, 134)';
-      // console.log(this.activeUser.jobRole);
     })
   }
 

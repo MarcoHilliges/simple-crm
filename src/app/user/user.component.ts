@@ -25,9 +25,7 @@ export class UserComponent implements OnInit {
     const coll = collection(this.firestore, 'Users');
     this.users$ = collectionData(coll);
     this.users$.subscribe((usersFromServer:any)=>{
-      // console.log(usersFromServer);
       this.allUser = usersFromServer;
-
     })
   }
 

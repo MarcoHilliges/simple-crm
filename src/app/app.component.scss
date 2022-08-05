@@ -48,6 +48,37 @@ mat-icon{
     padding-left: 56px;
     padding-right: 56px;
     padding-top: 16px;
+
+    overflow: auto;
 }
 
+@media screen and (max-width: 1000px){
+    .router-container{
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+}
 
+@media screen and (max-width: 700px){
+    .router-container{
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}
+
+@media screen and (max-width: 500px){
+    .router-container{
+        padding-left: 2px;
+        padding-right: 2px;
+    }
+
+    .sidenav{
+        width: 200px !important;
+    }
+}
+
+@media screen and (max-width: 400px){
+    .side-name{
+        display: none;
+    }
+}

@@ -30,15 +30,7 @@ export class DialogAddUserComponent implements OnInit {
 
   constructor(private firestore: Firestore, public dialogRef: MatDialogRef<DialogAddUserComponent>) { 
     const coll = collection(this.firestore, 'Users');
-    this.users$ = collectionData(coll);
-    // console.log(this.users$);
-
-    this.users$.subscribe((user) => {
-      // console.log(user);
-      
-    })
-    
-    
+    this.users$ = collectionData(coll); 
   }
 
   ngOnInit(): void {
@@ -47,10 +39,8 @@ export class DialogAddUserComponent implements OnInit {
   async saveUser(){
     this.loading = true;
     if (this.user.birthDate) this.user.birthDate = this.birthDate.getTime();    
-    // console.log('Current User ist', this.user.toJSON());
 
     const docRef = await addDoc(collection(this.firestore, "Users"), this.user.toJSON())
-    // console.log('ID', docRef.id)
     this.user.id = docRef.id;
     await setDoc(doc(this.firestore, "Users", this.user.id), this.user.toJSON());
     this.loading = false;
@@ -61,7 +51,6 @@ export class DialogAddUserComponent implements OnInit {
     if (this.email.hasError('required')) {
       return 'You must enter a value';
     }
-
     return this.email.hasError('email') ? 'Not a valid email' : '';
   }
 }

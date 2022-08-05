@@ -23,7 +23,6 @@ export class DashboardComponent implements OnInit {
 
     this.users$.subscribe((usersFromServer:any)=>{
       this.allUser = usersFromServer;
-      // console.log(this.allUser);
       this.filterJobRoles(service);
       this.filterCitys(service);  
     })
@@ -72,24 +71,17 @@ export class DashboardComponent implements OnInit {
         const user = this.allUser[number];
         unfilteredCitys.push(user.city)
       }
-      // console.log('first Step', unfilteredCitys);
 
       let filteredCitys: string[] = unfilteredCitys.filter((x, i) => unfilteredCitys.indexOf(x) === i);
       console.log('second Step', filteredCitys);
       
       for (let number = 0; number < filteredCitys.length; number++) {
         const city = filteredCitys[number];
-        // console.log(city); 
         let city3 = unfilteredCitys.filter( a => 
           a == city
         )
         service.cityArray.push({'city': city,'amount': city3.length});
-
       }
-      // console.log(service.jobRoles)
-      // console.log(service.cityArray)
       this.citys = service.cityArray;
-      // console.log(this.citys)
   }
-
 }

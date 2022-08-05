@@ -39,7 +39,6 @@ export class DialogEditUserComponent implements OnInit {
     if (this.birthDate !== null) {this.user.birthDate = this.birthDate.getTime();}
     else this.user.birthDate = null;
 
-    // console.log(this.user.birthDate)
     await setDoc(doc(this.firestore, "Users", this.user.id), this.user.toJSON());
     this.loading = false;
   }
