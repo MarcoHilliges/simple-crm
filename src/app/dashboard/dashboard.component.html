@@ -1,15 +1,33 @@
-<dx-pie-chart
-  id="pie"
-  title="jobs overview"
-  palette="bright"
-  [dataSource]="jobRoles"
+<div class="charts">
+  
+  <div class="chart-container">
+    <dx-pie-chart
+      id="pie"
+      title="Team Composition"
+      palette="bright"
+      [dataSource]="jobRoles"
 
->
-  <dxi-series argumentField="jobRole" valueField="amount">
-    <dxo-label [visible]="true">
-      <dxo-connector [visible]="true" [width]="1"></dxo-connector>
-    </dxo-label>
-  </dxi-series>
-  <dxo-size [width]="500"></dxo-size>
-  <dxo-export [enabled]="true"></dxo-export>
-</dx-pie-chart>
+    >
+      <dxi-series argumentField="jobRole" valueField="amount">
+        <dxo-label [visible]="true">
+          <dxo-connector [visible]="true" [width]="1"></dxo-connector>
+        </dxo-label>
+      </dxi-series>
+      <dxo-size></dxo-size>
+      <dxo-export [enabled]="true"></dxo-export>
+    </dx-pie-chart>
+  </div>
+
+  <div class="chart-container">
+    <dx-chart id="chart" [dataSource]="citys">
+      <dxi-series
+        argumentField="city"
+        valueField="amount"
+        name="Team Citys"
+        type="bar"
+        color="#25be9b"
+      >
+      </dxi-series>
+    </dx-chart>
+  </div>
+</div>

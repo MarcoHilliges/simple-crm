@@ -17,7 +17,7 @@ export class User {
         this.birthDate = obj ? obj.birthDate : null;
         this.street = obj ? obj.street : '';
         this.zipCode = obj ? obj.zipCode : '';
-        this.city = obj ? obj.city : '';
+        this.city = obj ? obj.city : 'unknown';
         this.jobRole = obj ? obj.jobRole : 'Guest';
         this.avatar = obj ? obj.avatar : 'avatar4';
         this.id = obj ? obj.id : '';

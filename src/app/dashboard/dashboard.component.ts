@@ -13,8 +13,8 @@ export class DashboardComponent implements OnInit {
   allUser:any = [];
   
   jobRoles!: { jobRole: string; amount: number; }[];
-    
-  
+  citys!: { city: string; amount: number; }[];
+
   users$!:Observable<any>;
 
   constructor(private firestore: Firestore, service: DataService) { 
@@ -25,10 +25,8 @@ export class DashboardComponent implements OnInit {
       this.allUser = usersFromServer;
       // console.log(this.allUser);
       this.filterJobRoles(service);
-
-      let filterCity
+      this.filterCitys(service);  
     })
-
   }
 
   ngOnInit(): void {
@@ -65,6 +63,33 @@ export class DashboardComponent implements OnInit {
         )
       service.jobRoles[4].amount = filterGuest.length;
       this.jobRoles = service.jobRoles;
+  }
+
+  filterCitys(service: DataService){
+    let unfilteredCitys: string[] = [];
+
+      for (let number = 0; number < this.allUser.length; number++) {
+        const user = this.allUser[number];
+        unfilteredCitys.push(user.city)
+      }
+      // console.log('first Step', unfilteredCitys);
+
+      let filteredCitys: string[] = unfilteredCitys.filter((x, i) => unfilteredCitys.indexOf(x) === i);
+      console.log('second Step', filteredCitys);
+      
+      for (let number = 0; number < filteredCitys.length; number++) {
+        const city = filteredCitys[number];
+        // console.log(city); 
+        let city3 = unfilteredCitys.filter( a => 
+          a == city
+        )
+        service.cityArray.push({'city': city,'amount': city3.length});
+
+      }
+      // console.log(service.jobRoles)
+      // console.log(service.cityArray)
+      this.citys = service.cityArray;
+      // console.log(this.citys)
   }
 
 }

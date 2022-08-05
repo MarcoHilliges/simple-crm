@@ -23,4 +23,6 @@ export class DataService {
     jobRole: 'Guest',
     amount: 0,
   }];
+
+  cityArray:any[] = []; 
 }
